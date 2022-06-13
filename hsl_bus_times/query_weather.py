@@ -3,7 +3,7 @@ import requests
 import json
 
 client = MongoClient('localhost', 27017)
-db = client['weather_info']
+db = client['hsl_bus_times']
 collection = db['weather_collection']
 
 def queryApi():
@@ -22,7 +22,7 @@ def weatherToDB():
 def getSecret():
     global key
 
-    collection = db['weather_key']
+    collection = db['api_key']
     keyv = collection.find_one({})
     keyvs = keyv['secret']
 

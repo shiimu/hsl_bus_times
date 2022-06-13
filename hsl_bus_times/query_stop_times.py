@@ -22,4 +22,4 @@ def queryApi(stop_id):
 
 
 def busToDB():
-    collection.insert(dumped_data)
+    collection.insert_one(dumped_data)
