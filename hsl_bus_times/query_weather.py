@@ -6,18 +6,20 @@ client = MongoClient('localhost', 27017)
 db = client['hsl_bus_times']
 collection = db['weather_collection']
 
-def queryApi():
+def queryWeatherApi():
     getSecret()
 
     url = "https://api.openweathermap.org/data/2.5/weather?lat=60.23787364561019&lon=25.10560957759351&appid="+ key + ""
     payload = {"query": '{\n "weather": {'}
     headers = {"Content-Type" : "application/json"}
     response = requests.get(url, headers=headers, data = json.dumps(payload))
-    
-    dumped_weather = response.json()
 
+    global dumped_weather    
+    dumped_weather = response.json()
+    weatherToDB()
+    
 def weatherToDB():
-    collection.insert(dumped_weather)
+    collection.insert_one(dumped_weather)
 
 def getSecret():
     global key

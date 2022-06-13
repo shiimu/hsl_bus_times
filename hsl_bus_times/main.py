@@ -3,6 +3,7 @@ import time
 import requests
 from requests.models import Response
 
+
 app = Flask(__name__)
 
 
@@ -10,6 +11,8 @@ app = Flask(__name__)
 def index():
     from query_stop_times import queryApi
     queryApi('HSL:1472128')
+    from query_weather import queryWeatherApi
+    queryWeatherApi()
     return render_template('index.html')
 
 
